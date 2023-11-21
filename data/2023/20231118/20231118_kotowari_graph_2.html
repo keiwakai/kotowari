@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>救急車受入状況</title>
+    <link rel="stylesheet" type="text/css" href="../../../css/style_graph.css">
+    <script src="../../../js/Chart.min.js"></script>
+
+    <script>
+        var dataLabelPlugin = {
+                afterDatasetsDraw: function(chart) {
+                    var ctx = chart.ctx;
+                    chart.data.datasets.forEach(function(dataset, 系列) {
+                        var meta = chart.getDatasetMeta(系列);
+                        if (系列 == 0) {
+                            if (!meta.hidden) {
+                                meta.data.forEach(function(element, 要素) {
+                                                                // ステップ１　数値を文字列に変換
+                                    var データ数値 = dataset.data[要素];
+                                    if (データ数値 <= 0) var 比率 = "";
+                                    else
+                                        var 比率 = データ数値.toString() + '件';
+                                                                // ステップ２　文字列の書体
+                                    ctx.fillStyle = 'black';            // 色　'rgb(0, 0, 0)', 'rgba(192, 80, 77, 0.7)'
+                                    var fontSize = 10;                  // サイズ
+                                    var fontStyle = 'normal';           // 書体 'bold', 'italic'
+                                    var fontFamily = 'Meiryo UI';           // フォントの種類 'sans-serif', 'ＭＳ 明朝'
+                                    ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                                                                // ステップ３　文字列の位置の基準点
+                                    ctx.textAlign = 'center';           // 文字列　start, end, left, right, center
+                                    ctx.textBaseline = 'middle';        // 文字高　middle, top, bottom
+                                                                // ステップ４　文字列のグラフでの位置
+                                    var padding = 5;                   // グラフ基準点と文字列の距離。適宜修正
+                                    var position = element.tooltipPosition();
+                                                                    //文字列の表示　 fillText(文字列, Ｘ位置, Ｙ位置)
+                                    ctx.fillText(比率, position.x,position.y - (fontSize / 2) - padding);
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+
+        function chartjsProgram() {
+            var ctx = document.getElementById('受入').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',//グラフのタイプ
+                fill: false,
+                data: {
+                    //labels: ['2023年度','2022年度','2021年度'],
+                    labels: ['4月','5月','6月','7月','8月','9月','10月','11月','12月','1月','2月','3月'],
+                    //{% tentou_koumoku %}
+                    datasets: [
+                        {
+                            label: '2023年度',
+                            borderColor: 'rgba(255,0,0,1)',  //グラフの線の色
+                            backgroundColor: 'rgba(255,0,0,0)', //グラフの背景色透過
+                            data: [179,156,180,218,230,190,196,143,null,null,null,null],
+                            tension: 0,
+                        },{
+                            label: '2022年度',
+                            borderColor: 'rgba(130,201,169,0.5)',  //グラフの線の色
+                            backgroundColor: 'rgba(130,201,169,0)', //グラフの背景色透過
+                            data: [134,164,169,219,182,194,173,182,231,181,157,173],
+                            tension: 0,
+                        },{
+                            label: '2021年度',
+                            borderColor: 'rgba(255,183,76,0.5)',  //グラフの線の色
+                            backgroundColor: 'rgba(255,183,76,0)', //グラフの背景色透過
+                            data: [148,143,146,168,156,138,176,181,199,148,156,161],
+                            tension: 0,
+                        }
+                    ]
+                },
+                options: {
+                    legend: {    // 凡例の表示位置　（凡例位置: '下'|'右' 省略時は上）
+                    display: true//グラフの説明を表示
+                        },
+                    tooltips:{//グラフへカーソルを合わせた際のツールチップ詳細表示の設定
+                        callbacks:{
+                                label: function(tooltipItems, data) {
+                                    if(tooltipItems.yLabel == "0"){
+                                        return "";
+                                    }
+                                    return data.datasets[tooltipItems.datasetIndex].label + "：" + tooltipItems.yLabel + "件";//Kgを最後につける
+                                }
+                            }
+                        },
+                    title: {     // タイトルの表示（タイトル: 'タイトル文'）
+                        display: true,
+                        fontSize: 18,
+                        position: "top",
+                        text: '救急車受入件数（推移）'
+                    },
+                    
+                    scales: {
+                        yAxes: [
+                            {
+                                //display: false,
+                                //stacked: true,
+                                ticks: {
+                                    // 下記のように固定値ではなく、
+                                    // データに応じて算出するのがいいと思います
+                                    min: 0,
+                                },
+                            }
+                        ],
+                        xAxes: [
+                            {
+                                //display: true,
+                                //stacked: true,
+                        },
+                        ],
+                    }
+                },
+                plugins: [dataLabelPlugin]
+            });
+        }
+    </script>
+</head>
+
+<body onLoad="chartjsProgram()">
+    <table align="center">
+        <td>
+            <table align="center" cellpadding="10" class="table2">
+                <tr>
+                    <td><canvas id='受入' width='550' height='250'></canvas></td>
+                </tr>
+            </table>
+        </td>
+    </table>
+    <script src="location.js"></script>
+</body>

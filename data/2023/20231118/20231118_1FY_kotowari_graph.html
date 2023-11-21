@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>救急車受入</title>
+    <link rel="stylesheet" type="text/css" href="../../../css/style_graph.css">
+    <script src="../../../js/Chart.min.js"></script>
+
+    <script>
+        var dataLabelPlugin = {
+                afterDatasetsDraw: function(chart) {
+                    var ctx = chart.ctx;
+                    chart.data.datasets.forEach(function(dataset, 系列) {
+                        var meta = chart.getDatasetMeta(系列);
+                        if (!meta.hidden) {
+                            meta.data.forEach(function(element, 要素) {
+                                                            // ステップ１　数値を文字列に変換
+                                var データ数値 = dataset.data[要素];
+                                if (データ数値 <= 0) var 比率 = "";
+                                else
+                                    var 比率 = データ数値.toString() + '件';
+                                                            // ステップ２　文字列の書体
+                                ctx.fillStyle = 'black';            // 色　'rgb(0, 0, 0)', 'rgba(192, 80, 77, 0.7)'
+                                var fontSize = 10;                  // サイズ
+                                var fontStyle = 'normal';           // 書体 'bold', 'italic'
+                                var fontFamily = 'Meiryo UI';           // フォントの種類 'sans-serif', 'ＭＳ 明朝'
+                                ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                                                            // ステップ３　文字列の位置の基準点
+                                ctx.textAlign = 'end';           // 文字列　start, end, left, right, center
+                                ctx.textBaseline = 'middle';        // 文字高　middle, top, bottom
+                                                            // ステップ４　文字列のグラフでの位置
+                                var padding = 5;                   // グラフ基準点と文字列の距離。適宜修正
+                                var position = element.tooltipPosition();
+                                                                //文字列の表示　 fillText(文字列, Ｘ位置, Ｙ位置)
+                                ctx.fillText(比率, position.x-5, position.y);
+                            });
+                        }
+                    });
+                }
+            }
+
+        function chartjsProgram() {
+            var ctx = document.getElementById('要請深夜').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: ['2023年度','2022年度','2021年度'],
+                    //labels: ['2023年度','2022年度','2021年度'],
+                    //{% tentou_koumoku %}
+                    datasets: [
+                        {
+                            //label: '発生率（‰）',
+                            data: [539,545,370],
+                            //data: [2,1,2],
+                            //{% tentou_data %}
+                            backgroundColor: ["#EF6F6A","#A3CCE9","#A3CCE9"],
+                            borderColor: 'black',  // 棒の枠の色
+                            borderWidth: 1      // その太さ
+                        },
+                    ]
+                },
+                options: {
+                    responsive: false,
+                    /*
+                    title: {     // タイトルの表示（タイトル: 'タイトル文'）
+                        display: true,
+                        fontSize: 18,
+                        position: "top",
+                        text: '転倒・転落発生率'
+                    },
+                    
+                    legend: {    // 凡例の表示位置　（凡例位置: '下'|'右' 省略時は上）
+                        position: 'bottom',
+                    },
+                    */
+                    legend: {
+                        display: false
+                    },
+
+                    scales: {
+                        xAxes: [
+                            {
+                                //display: false,
+                                //stacked: true,
+                                ticks: {
+                                    // 下記のように固定値ではなく、
+                                    // データに応じて算出するのがいいと思います
+                                    min: 0,
+                                    //max: 20,
+                                },
+                            }
+                        ],
+                        
+                        yAxes: [
+                        //    {
+                                //display: true,
+                                //stacked: true,
+                        //},
+                        ],
+                        
+                    }
+                },
+                plugins: [dataLabelPlugin]
+            });
+        }
+
+        var dataLabelPlugin1 = {
+                afterDatasetsDraw: function(chart) {
+                    var ctx = chart.ctx;
+                    chart.data.datasets.forEach(function(dataset, 系列) {
+                        var meta = chart.getDatasetMeta(系列);
+                        if (!meta.hidden) {
+                            meta.data.forEach(function(element, 要素) {
+                                                            // ステップ１　数値を文字列に変換
+                                var データ数値 = dataset.data[要素];
+                                if (データ数値 <= 0) var 比率 = "";
+                                else
+                                    var 比率 = データ数値.toString() + '件';
+                                                            // ステップ２　文字列の書体
+                                ctx.fillStyle = 'black';            // 色　'rgb(0, 0, 0)', 'rgba(192, 80, 77, 0.7)'
+                                var fontSize = 10;                  // サイズ
+                                var fontStyle = 'normal';           // 書体 'bold', 'italic'
+                                var fontFamily = 'Meiryo UI';           // フォントの種類 'sans-serif', 'ＭＳ 明朝'
+                                ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                                                            // ステップ３　文字列の位置の基準点
+                                ctx.textAlign = 'end';           // 文字列　start, end, left, right, center
+                                ctx.textBaseline = 'middle';        // 文字高　middle, top, bottom
+                                                            // ステップ４　文字列のグラフでの位置
+                                var padding = 5;                   // グラフ基準点と文字列の距離。適宜修正
+                                var position = element.tooltipPosition();
+                                                                //文字列の表示　 fillText(文字列, Ｘ位置, Ｙ位置)
+                                ctx.fillText(比率, position.x-10, position.y);
+                            });
+                        }
+                    });
+                }
+            }
+
+        function chartjsProgram1() {
+            var ctx = document.getElementById('要請日勤').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: ['2023年度','2022年度','2021年度'],
+                    //labels: ['2023年度','2022年度','2021年度'],
+                    //{% jyokusou_koumoku %}
+                    datasets: [
+                        {
+                            //label: '発生率（%）',
+                            data: [966,1004,762],
+                            //data: [2,1,3],
+                            //{% jyokusou_data %}
+                            backgroundColor: ["#EF6F6A","#A3CCE9","#A3CCE9"],
+                            borderColor: 'black',  // 棒の枠の色
+                            borderWidth: 1      // その太さ
+                        },
+                    ]
+                },
+                options: {
+                    responsive: false,
+                    /*
+                    title: {     // タイトルの表示（タイトル: 'タイトル文'）
+                        display: true,
+                        fontSize: 18,
+                        position: "top",
+                        text: '褥瘡発生率'
+                    },
+                    legend: {    // 凡例の表示位置　（凡例位置: '下'|'右' 省略時は上）
+                        position: 'bottom',
+                    },
+                    */
+                    legend: {
+                        display: false
+                    },
+
+                    scales: {
+                        xAxes: [
+                            {
+                                //display: false,
+                                //stacked: true,
+                                ticks: {
+                                    // 下記のように固定値ではなく、
+                                    // データに応じて算出するのがいいと思います
+                                    min: 0,
+                                    //max: 20,
+                                },
+                            }
+                        ],
+                        yAxes: [
+                            {
+                                //display: true,
+                                //stacked: true,
+                        },
+                        ],
+                    }
+                },
+                plugins: [dataLabelPlugin1]
+            });
+        }
+
+        var dataLabelPlugin2 = {
+                afterDatasetsDraw: function(chart) {
+                    var ctx = chart.ctx;
+                    chart.data.datasets.forEach(function(dataset, 系列) {
+                        var meta = chart.getDatasetMeta(系列);
+                        if (!meta.hidden) {
+                            meta.data.forEach(function(element, 要素) {
+                                                            // ステップ１　数値を文字列に変換
+                                var データ数値 = dataset.data[要素];
+                                if (データ数値 <= 0) var 比率 = "";
+                                else
+                                    var 比率 = データ数値.toString() + '件';
+                                                            // ステップ２　文字列の書体
+                                ctx.fillStyle = 'black';            // 色　'rgb(0, 0, 0)', 'rgba(192, 80, 77, 0.7)'
+                                var fontSize = 10;                  // サイズ
+                                var fontStyle = 'normal';           // 書体 'bold', 'italic'
+                                var fontFamily = 'Meiryo UI';           // フォントの種類 'sans-serif', 'ＭＳ 明朝'
+                                ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                                                            // ステップ３　文字列の位置の基準点
+                                ctx.textAlign = 'end';           // 文字列　start, end, left, right, center
+                                ctx.textBaseline = 'middle';        // 文字高　middle, top, bottom
+                                                            // ステップ４　文字列のグラフでの位置
+                                var padding = 5;                   // グラフ基準点と文字列の距離。適宜修正
+                                var position = element.tooltipPosition();
+                                                                //文字列の表示　 fillText(文字列, Ｘ位置, Ｙ位置)
+                                ctx.fillText(比率, position.x-10, position.y);
+                            });
+                        }
+                    });
+                }
+            }
+
+        function chartjsProgram2() {
+            var ctx = document.getElementById('要請準夜').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: ['2023年度','2022年度','2021年度'],
+                    //labels: ['2023年度','2022年度','2021年度'],
+                    //{% yokusei_koumoku %}
+                    datasets: [
+                        {
+                            //label: '抑制率（%）',
+                            data: [721,702,513],
+                            //data: [16,18,17],
+                            //{% yokusi_data %}
+                            backgroundColor: ["#EF6F6A","#A3CCE9","#A3CCE9"],
+                            borderColor: 'black',  // 棒の枠の色
+                            borderWidth: 1      // その太さ
+                        },
+                    ]
+                },
+                options: {
+                    responsive: false,
+                    /*
+                    title: {     // タイトルの表示（タイトル: 'タイトル文'）
+                        display: true,
+                        fontSize: 18,
+                        position: "top",
+                        text: '身体抑制率'
+                    },
+                    legend: {    // 凡例の表示位置　（凡例位置: '下'|'右' 省略時は上）
+                        position: 'bottom',
+                    },
+                    */
+
+                    legend: {
+                        display: false
+                    },
+
+                    scales: {
+                        xAxes: [
+                            {
+                                //display: false,
+                                //stacked: true,
+                                ticks: {
+                                    // 下記のように固定値ではなく、
+                                    // データに応じて算出するのがいいと思います
+                                    min: 0,
+                                    //max: 20,
+                                },
+                            }
+                        ],
+                        yAxes: [
+                            {
+                                //display: true,
+                                //stacked: true,
+                        },
+                        ],
+                    }
+                },
+                plugins: [dataLabelPlugin2]
+            });
+        }
+
+        var dataLabelPlugin3 = {
+                afterDatasetsDraw: function(chart) {
+                    var ctx = chart.ctx;
+                    chart.data.datasets.forEach(function(dataset, 系列) {
+                        var meta = chart.getDatasetMeta(系列);
+                        if (!meta.hidden) {
+                            meta.data.forEach(function(element, 要素) {
+                                                            // ステップ１　数値を文字列に変換
+                                var データ数値 = dataset.data[要素];
+                                if (データ数値 <= 0) var 比率 = "";
+                                else
+                                    var 比率 = データ数値.toString() + '件';
+                                                            // ステップ２　文字列の書体
+                                ctx.fillStyle = 'black';            // 色　'rgb(0, 0, 0)', 'rgba(192, 80, 77, 0.7)'
+                                var fontSize = 10;                  // サイズ
+                                var fontStyle = 'normal';           // 書体 'bold', 'italic'
+                                var fontFamily = 'Meiryo UI';           // フォントの種類 'sans-serif', 'ＭＳ 明朝'
+                                ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                                                            // ステップ３　文字列の位置の基準点
+                                ctx.textAlign = 'end';           // 文字列　start, end, left, right, center
+                                ctx.textBaseline = 'middle';        // 文字高　middle, top, bottom
+                                                            // ステップ４　文字列のグラフでの位置
+                                var padding = 5;                   // グラフ基準点と文字列の距離。適宜修正
+                                var position = element.tooltipPosition();
+                                                                //文字列の表示　 fillText(文字列, Ｘ位置, Ｙ位置)
+                                ctx.fillText(比率, position.x-5, position.y);
+                            });
+                        }
+                    });
+                }
+            }
+
+        function chartjsProgram3() {
+            var ctx = document.getElementById('受入深夜').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: ['2023年度','2022年度','2021年度'],
+                    //labels: ['2023年度','2022年度','2021年度'],
+                    //{% tentou_koumoku %}
+                    datasets: [
+                        {
+                            //label: '発生率（‰）',
+                            data: [298,274,216],
+                            //data: [2,1,2],
+                            //{% tentou_data %}
+                            backgroundColor: ["#EF6F6A","#A3CCE9","#A3CCE9"],
+                            borderColor: 'black',  // 棒の枠の色
+                            borderWidth: 1      // その太さ
+                        },
+                    ]
+                },
+                options: {
+                    responsive: false,
+                    /*
+                    title: {     // タイトルの表示（タイトル: 'タイトル文'）
+                        display: true,
+                        fontSize: 18,
+                        position: "top",
+                        text: '転倒・転落発生率'
+                    },
+                    
+                    legend: {    // 凡例の表示位置　（凡例位置: '下'|'右' 省略時は上）
+                        position: 'bottom',
+                    },
+                    */
+                    legend: {
+                        display: false
+                    },
+
+                    scales: {
+                        xAxes: [
+                            {
+                                //display: false,
+                                //stacked: true,
+                                ticks: {
+                                    // 下記のように固定値ではなく、
+                                    // データに応じて算出するのがいいと思います
+                                    min: 0,
+                                    //max: 20,
+                                },
+                            }
+                        ],
+                        yAxes: [
+                            {
+                                //display: true,
+                                //stacked: true,
+                        },
+                        ],
+                    }
+                },
+                plugins: [dataLabelPlugin3]
+            });
+        }
+
+        var dataLabelPlugin4 = {
+                afterDatasetsDraw: function(chart) {
+                    var ctx = chart.ctx;
+                    chart.data.datasets.forEach(function(dataset, 系列) {
+                        var meta = chart.getDatasetMeta(系列);
+                        if (!meta.hidden) {
+                            meta.data.forEach(function(element, 要素) {
+                                                            // ステップ１　数値を文字列に変換
+                                var データ数値 = dataset.data[要素];
+                                if (データ数値 <= 0) var 比率 = "";
+                                else
+                                    var 比率 = データ数値.toString() + '件';
+                                                            // ステップ２　文字列の書体
+                                ctx.fillStyle = 'black';            // 色　'rgb(0, 0, 0)', 'rgba(192, 80, 77, 0.7)'
+                                var fontSize = 10;                  // サイズ
+                                var fontStyle = 'normal';           // 書体 'bold', 'italic'
+                                var fontFamily = 'Meiryo UI';           // フォントの種類 'sans-serif', 'ＭＳ 明朝'
+                                ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                                                            // ステップ３　文字列の位置の基準点
+                                ctx.textAlign = 'end';           // 文字列　start, end, left, right, center
+                                ctx.textBaseline = 'middle';        // 文字高　middle, top, bottom
+                                                            // ステップ４　文字列のグラフでの位置
+                                var padding = 5;                   // グラフ基準点と文字列の距離。適宜修正
+                                var position = element.tooltipPosition();
+                                                                //文字列の表示　 fillText(文字列, Ｘ位置, Ｙ位置)
+                                ctx.fillText(比率, position.x-10, position.y);
+                            });
+                        }
+                    });
+                }
+            }
+
+        function chartjsProgram4() {
+            var ctx = document.getElementById('受入日勤').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: ['2023年度','2022年度','2021年度'],
+                    //labels: ['2023年度','2022年度','2021年度'],
+                    //{% jyokusou_koumoku %}
+                    datasets: [
+                        {
+                            //label: '発生率（%）',
+                            data: [728,666,627],
+                            //data: [2,1,3],
+                            //{% jyokusou_data %}
+                            backgroundColor: ["#EF6F6A","#A3CCE9","#A3CCE9"],
+                            borderColor: 'black',  // 棒の枠の色
+                            borderWidth: 1      // その太さ
+                        },
+                    ]
+                },
+                options: {
+                    responsive: false,
+                    /*
+                    title: {     // タイトルの表示（タイトル: 'タイトル文'）
+                        display: true,
+                        fontSize: 18,
+                        position: "top",
+                        text: '褥瘡発生率'
+                    },
+                    legend: {    // 凡例の表示位置　（凡例位置: '下'|'右' 省略時は上）
+                        position: 'bottom',
+                    },
+                    */
+                    legend: {
+                        display: false
+                    },
+
+                    scales: {
+                        xAxes: [
+                            {
+                                //display: false,
+                                //stacked: true,
+                                ticks: {
+                                    // 下記のように固定値ではなく、
+                                    // データに応じて算出するのがいいと思います
+                                    min: 0,
+                                    //max: 20,
+                                },
+                            }
+                        ],
+                        yAxes: [
+                            {
+                                //display: true,
+                                //stacked: true,
+                        },
+                        ],
+                    }
+                },
+                plugins: [dataLabelPlugin4]
+            });
+        }
+
+        var dataLabelPlugin5 = {
+                afterDatasetsDraw: function(chart) {
+                    var ctx = chart.ctx;
+                    chart.data.datasets.forEach(function(dataset, 系列) {
+                        var meta = chart.getDatasetMeta(系列);
+                        if (!meta.hidden) {
+                            meta.data.forEach(function(element, 要素) {
+                                                            // ステップ１　数値を文字列に変換
+                                var データ数値 = dataset.data[要素];
+                                if (データ数値 <= 0) var 比率 = "";
+                                else
+                                    var 比率 = データ数値.toString() + '件';
+                                                            // ステップ２　文字列の書体
+                                ctx.fillStyle = 'black';            // 色　'rgb(0, 0, 0)', 'rgba(192, 80, 77, 0.7)'
+                                var fontSize = 10;                  // サイズ
+                                var fontStyle = 'normal';           // 書体 'bold', 'italic'
+                                var fontFamily = 'Meiryo UI';           // フォントの種類 'sans-serif', 'ＭＳ 明朝'
+                                ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                                                            // ステップ３　文字列の位置の基準点
+                                ctx.textAlign = 'end';           // 文字列　start, end, left, right, center
+                                ctx.textBaseline = 'middle';        // 文字高　middle, top, bottom
+                                                            // ステップ４　文字列のグラフでの位置
+                                var padding = 5;                   // グラフ基準点と文字列の距離。適宜修正
+                                var position = element.tooltipPosition();
+                                                                //文字列の表示　 fillText(文字列, Ｘ位置, Ｙ位置)
+                                ctx.fillText(比率, position.x-10, position.y);
+                            });
+                        }
+                    });
+                }
+            }
+
+        function chartjsProgram5() {
+            var ctx = document.getElementById('受入準夜').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: ['2023年度','2022年度','2021年度'],
+                    //labels: ['2023年度','2022年度','2021年度'],
+                    //{% yokusei_koumoku %}
+                    datasets: [
+                        {
+                            //label: '抑制率（%）',
+                            data: [466,392,334],
+                            //data: [16,18,17],
+                            //{% yokusi_data %}
+                            backgroundColor: ["#EF6F6A","#A3CCE9","#A3CCE9"],
+                            borderColor: 'black',  // 棒の枠の色
+                            borderWidth: 1      // その太さ
+                        },
+                    ]
+                },
+                options: {
+                    responsive: false,
+                    /*
+                    title: {     // タイトルの表示（タイトル: 'タイトル文'）
+                        display: true,
+                        fontSize: 18,
+                        position: "top",
+                        text: '身体抑制率'
+                    },
+                    legend: {    // 凡例の表示位置　（凡例位置: '下'|'右' 省略時は上）
+                        position: 'bottom',
+                    },
+                    */
+                    legend: {
+                        display: false
+                    },
+
+                    scales: {
+                        xAxes: [
+                            {
+                                //display: false,
+                                //stacked: true,
+                                ticks: {
+                                    // 下記のように固定値ではなく、
+                                    // データに応じて算出するのがいいと思います
+                                    min: 0,
+                                    //max: 20,
+                                },
+                            }
+                        ],
+                        yAxes: [
+                            {
+                                //display: true,
+                                //stacked: true,
+                        },
+                        ],
+                    }
+                },
+                plugins: [dataLabelPlugin5]
+            });
+        }
+    </script>
+</head>
+
+<body onLoad="chartjsProgram();chartjsProgram1();chartjsProgram2();chartjsProgram3();chartjsProgram4();chartjsProgram5()">
+    <tabale>
+        <table align="center">
+            <table align="center" width="590" class="table1">
+                <tr>
+                    <td colspan="2" align="center" class="m1">救急車要請実績<br>2023年度</td>
+                </tr>
+                <tr>
+                    <td align="center" class="suchi">2226件</td>
+                </tr>
+            </table>
+        </table>
+        <table align="center">
+            <td>
+                <table width="194" class="table1">
+                    <tr>
+                        <td align="center" class="m1">深　夜</td>
+                    </tr>
+                    <tr>
+                        <td align="center" class="suchi">539件</td>
+                        <!-- {% tentou_data1 %} -->
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table width="194" class="table1">
+                    <tr>
+                        <td align="center" class="m1">日　勤</td>
+                    </tr>
+                    <tr>
+                        <td align="center" class="suchi">966件</td>
+                        <!-- {% jyokusou_data1 %} -->
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table width="194" class="table1">
+                    <tr>
+                        <td align="center" class="m1">準　夜</td>
+                    </tr>
+                    <tr>
+                        <td align="center" class="suchi">721件</td>
+                        <!-- {% yokusei_data1 %} -->
+                    </tr>
+                </table>
+            </td>
+        </table>
+        <table align="center">
+            <td>
+                <table align="center" cellpadding="10" class="table2">
+                    <tr>
+                        <td><canvas id='要請深夜' width='172' height='100'></canvas></td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table align="center" cellpadding="10" class="table2">
+                    <tr>
+                        <td><canvas id='要請日勤' width='172' height='100'></canvas></td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table align="center" cellpadding="10" class="table2">
+                    <tr>
+                        <td><canvas id='要請準夜' width='172' height='100'></canvas></td>
+                    </tr>
+                </table>
+            </td>
+        </table>
+        <br>
+        <table align="center">
+            <table align="center" width="590" class="table1">
+                <tr>
+                    <td colspan="2" align="center" class="m1">救急車受入件数<br>2023年度</td>
+                </tr>
+                <tr>
+                    <td align="center" class="suchi">1492件</td>
+                </tr>
+            </table>
+        </table>
+        <table align="center">
+            <td>
+                <table width="194" class="table1">
+                    <tr>
+                        <td align="center" class="m1">深　夜</td>
+                    </tr>
+                    <tr>
+                        <td align="center" class="suchi">298件</td>
+                        <!-- {% tentou_data1 %} -->
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table width="194" class="table1">
+                    <tr>
+                        <td align="center" class="m1">日　勤</td>
+                    </tr>
+                    <tr>
+                        <td align="center" class="suchi">728件</td>
+                        <!-- {% jyokusou_data1 %} -->
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table width="194" class="table1">
+                    <tr>
+                        <td align="center" class="m1">準　夜</td>
+                    </tr>
+                    <tr>
+                        <td align="center" class="suchi">466件</td>
+                        <!-- {% yokusei_data1 %} -->
+                    </tr>
+                </table>
+            </td>
+        </table>
+        <table align="center">
+            <td>
+                <table align="center" cellpadding="10" class="table2">
+                    <tr>
+                        <td><canvas id='受入深夜' width='172' height='100'></canvas></td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table align="center" cellpadding="10" class="table2">
+                    <tr>
+                        <td><canvas id='受入日勤' width='172' height='100'></canvas></td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table align="center" cellpadding="10" class="table2">
+                    <tr>
+                        <td><canvas id='受入準夜' width='172' height='100'></canvas></td>
+                    </tr>
+                </table>
+            </td>
+        </table>
+    </tabale>
+    
+    <script src="location.js"></script>
+</body>
