@@ -1,1 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>お断り実績報告</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<header class="page-header  wrapper">
+    <h1>2023年11月 お断り実績報告</h1>
+    <nav>
+        <ul class="main-nav">
+            <li><a href="../ukeire.html">受入状況</a></li>
+        </ul>
+    </nav>
+</header>
 
+<body>
+    <br>
+    <div class="input-block">
+        <div class="select-block">
+            <form name="form_ym">
+                <label>年月：
+                    <select id="category-select-ym" name="category_select_ym">
+                        <option selected>2023年11月</option>
+						<option>2023年10月</option>
+						<option>2023年09月</option>
+						<option>2023年08月</option>
+						<option>2023年07月</option>
+						<option>2023年06月</option>
+						<option>2023年05月</option>
+						<option>2023年04月</option>
+
+                    </select>
+                </label>
+            </form>
+            
+        </div>
+        <div class="input-button">
+            <input type="button" value="選択" onclick="clickBtn1()"/>
+        </div>
+    </div>
+    <div class="input-block">
+        <div class="select-button">
+            <input type="button" value="断り実績" onclick="clickkpi()"/>
+            <input type="button" value="救急車受入状況" onclick="clickkyu()"/>
+            <input type="button" value="統計表" onclick="clickkyu1()"/>
+            <input type="button" value="まとめ" onclick="clickkyu2()"/>
+        </div>
+    </div>
+    <p align="left"><font color="red">　　　　　　　2023年11月21日 16:52:28 更新</font></p>
+    <!--
+    <p align="center"><iframe width="1200" height="800" src="data\2023\202306\202306_kpi.html" name="iframe_1"></iframe></p>
+    -->
+
+    <p align="center"><iframe width="1200" height="910" src="data\2023年度\202311\202311_kotowari.html" frameborder="0" name="iframe_1"></iframe></p>
+    
+    <!--
+        <script src="js/select.js"></script>
+    -->
+    
+    <script>
+        function clickBtn1(){
+            const str1 = document.form_ym.category_select_ym.value;
+            
+            if (str1 == "選択してください") {
+                alert("年月を選択してください");
+            } else { 
+                    var yyyy = str1.substr(0,4);
+                    var mm = str1.substr(5,2);
+                    var yyyymm = yyyy + mm;
+
+                    if (mm >= "04") {
+                        var nendo = yyyy + "年度";
+                    } else {
+                        var nendo = '' + (Number(yyyy) - 1) + "年度";
+                    }
+                    
+                    var target_url = "data\\yyyy1\\yyyymm\\yyyymm";
+                    
+                    var target_url = target_url.replace("yyyy1",nendo);
+                    var target_url = target_url.replace("yyyy",yyyy);
+                    var target_url = target_url.replace("mm",mm);
+                    var target_url = target_url.replace("yyyymm",yyyymm);
+
+                    iframe_1.location = target_url + "_kotowari.html";
+                    //alert(target_url);
+                }
+        }  
+        
+        function clickkpi(){
+            const str1 = document.form_ym.category_select_ym.value;
+            if (str1 == "選択してください") {
+                var target_url = "data\\2023年度\\202311\\202311_kotowari.html";
+            } else { 
+                    var yyyy = str1.substr(0,4);
+                    var mm = str1.substr(5,2);
+                    var yyyymm = yyyy + mm;
+
+                    if (mm >= "04") {
+                        var nendo = yyyy + "年度";
+                    } else {
+                        var nendo = '' + (Number(yyyy) - 1) + "年度";
+                    }
+                    
+                    var target_url = "data\\yyyy1\\yyyymm\\yyyymm";
+                    
+                    var target_url = target_url.replace("yyyy1",nendo);
+                    var target_url = target_url.replace("yyyy",yyyy);
+                    var target_url = target_url.replace("yyyymm",yyyymm);
+                    var target_url = target_url.replace("mm",mm);
+
+                    var target_url = target_url +"_kotowari.html";
+                    //alert(target_url);
+                }
+            iframe_1.location = target_url
+        }
+
+        function clickkyu(){
+            const str1 = document.form_ym.category_select_ym.value;
+            if (str1 == "選択してください") {
+                var target_url = "data\\2023年度\\202311\\202311_kyu.html";
+            } else { 
+                    var yyyy = str1.substr(0,4);
+                    var mm = str1.substr(5,2);
+                    var yyyymm = yyyy + mm;
+
+                    if (mm >= "04") {
+                        var nendo = yyyy + "年度";
+                    } else {
+                        var nendo = '' + (Number(yyyy) - 1) + "年度";
+                    }
+                    
+                    var target_url = "data\\yyyy1\\yyyymm\\yyyymm";
+                    
+                    var target_url = target_url.replace("yyyy1",nendo);
+                    var target_url = target_url.replace("yyyy",yyyy);
+                    var target_url = target_url.replace("yyyymm",yyyymm);
+                    var target_url = target_url.replace("mm",mm);
+
+                    var target_url = target_url +"_kyu.html";
+                    //alert(target_url);
+                }
+            iframe_1.location = target_url
+        }
+
+        function clickkyu1(){
+            const str1 = document.form_ym.category_select_ym.value;
+            if (str1 == "選択してください") {
+                var target_url = "data\\2023年度\\202311\\202311_table.html";
+            } else { 
+                    var yyyy = str1.substr(0,4);
+                    var mm = str1.substr(5,2);
+                    var yyyymm = yyyy + mm;
+                    
+                    if (mm >= "04") {
+                        var nendo = yyyy + "年度";
+                    } else {
+                        var nendo = '' + (Number(yyyy) - 1) + "年度";
+                    }
+
+                    var target_url = "data\\yyyy1\\yyyymm\\yyyymm";
+                    
+                    var target_url = target_url.replace("yyyy1",nendo);
+                    var target_url = target_url.replace("yyyy",yyyy);
+                    var target_url = target_url.replace("yyyymm",yyyymm);
+                    var target_url = target_url.replace("mm",mm);
+
+                    var target_url = target_url +"_table.html";
+                    //alert(target_url);
+                }
+            iframe_1.location = target_url
+        }
+
+        function clickkyu2(){
+            const str1 = document.form_ym.category_select_ym.value;
+            if (str1 == "選択してください") {
+                var target_url = "data\\2023年度\\202311\\202311_kyu1.html";
+            } else { 
+                    var yyyy = str1.substr(0,4);
+                    var mm = str1.substr(5,2);
+                    var yyyymm = yyyy + mm;
+                    
+                    if (mm >= "04") {
+                        var nendo = yyyy + "年度";
+                    } else {
+                        var nendo = '' + (Number(yyyy) - 1) + "年度";
+                    }
+
+                    var target_url = "data\\yyyy1\\yyyymm\\yyyymm";
+                    
+                    var target_url = target_url.replace("yyyy1",nendo);
+                    var target_url = target_url.replace("yyyy",yyyy);
+                    var target_url = target_url.replace("yyyymm",yyyymm);
+                    var target_url = target_url.replace("mm",mm);
+
+                    var target_url = target_url +"_kyu1.html";
+                    //alert(target_url);
+                }
+            iframe_1.location = target_url
+        }
+        function clickkab(){
+            const str1 = document.form_ym.category_select_ym.value;
+            if (str1 == "選択してください") {
+                var target_url = "data\\2023年度\\202311\\202311_kabetu.html";
+            } else { 
+                    var yyyy = str1.substr(0,4);
+                    var mm = str1.substr(5,2);
+                    var yyyymm = yyyy + mm;
+
+                    if (mm >= "04") {
+                        var nendo = yyyy + "年度";
+                    } else {
+                        var nendo = '' + (Number(yyyy) - 1) + "年度";
+                    }
+                    
+                    var target_url = "data\\yyyy1\\yyyymm\\yyyymm";
+                    
+                    var target_url = target_url.replace("yyyy1",nendo);
+                    var target_url = target_url.replace("yyyy",yyyy);
+                    var target_url = target_url.replace("yyyymm",yyyymm);
+                    var target_url = target_url.replace("mm",mm);
+
+                    var target_url = target_url +"_kabetu.html";
+                    //alert(target_url);
+                }
+            iframe_1.location = target_url
+        }
+    </script>
+</body>
