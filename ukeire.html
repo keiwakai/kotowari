@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>救急車受入状況</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    
+</head>
+<header class="page-header  wrapper">
+    <h1>救急車受入状況</h1>
+    <nav>
+        <ul class="main-nav">
+            <li><a href="kotowari_data/main.html">断り事例</a></li>
+        </ul>
+    </nav>
+</header>
+
+<body>
+    <br>
+    <div class="input-block">
+        <div class="select-block">
+            <form name="form_ym">
+                <label>年月：
+                    <select id="category-select-ym" name="category_select_ym">
+                        <option>選択してください</option>
+                    </select>
+                </label>
+            </form>
+            
+        </div>
+        <div class="select-block">
+            <form name="form_ymd">
+                <label>年月日：
+                    <select id="sub-category-select-ymd" name="sub_category_select_ymd">
+                        <option>選択してください</option>
+                    </select>
+                </label>
+            </form>    
+        </div>
+        <div class="input-button">
+            <input type="button" value="選択" onclick="clickBtn1()"/>
+        </div>
+    </div>
+    <div class="input-block">
+        <div class="select-button">
+            <input type="button" value="Day" onclick="clickDay()"/>
+            <input type="button" value="Month" onclick="clickMonth()"/>
+            <input type="button" value="FY" onclick="clickFY()"/>
+            <input type="button" value="断り事例" onclick="clickjirei()"/>
+        </div>
+    </div>
+    
+    <table align="center" border="0" width="1240" cellspacing="0" cellpadding="0">
+        <tr>
+            <td>
+                <p align="center"><iframe width="1240" height="180" src="data\2023\20231120\20231120_1Day_kotowari_sum.html" name="iframe_1" frameborder="0"></iframe></p>
+            </td>
+        </tr>
+    </table>
+
+    <table align="center" border="0" width="1240" cellspacing="0" cellpadding="0">
+        <tr>
+            <td>
+                <p align="center"><iframe width="620" height="590" src="data\2023\20231120\20231120_1Day_kotowari_graph.html" name="iframe_2" frameborder="0"></iframe></p>
+            </td>
+            <td>
+                <p align="center"><iframe width="620" height="590" src="data\2023\20231120\20231120_1Day_kotowari_graph1.html" name="iframe_3" frameborder="0"></iframe></p>
+            </td>
+        </tr>
+    </table>
+    <table align="center" border="0" width="1240" cellspacing="0" cellpadding="0">
+        <tr>
+            <td>
+                <p align="center"><iframe width="620" height="310" src="data\2023\20231120\20231120_kotowari_graph_1.html" frameborder="0"></iframe></p>
+                <p align="center"><iframe width="620" height="310" src="data\2023\20231120\20231120_kotowari_graph_2.html" frameborder="0"></iframe></p>
+            </td>
+            <td>
+                <p align="center"><iframe width="620" height="642" src="data\2023\20231120\20231120_kotowari_graph_3.html" frameborder="0"></iframe></p>
+                
+            </td>
+        </tr>
+    </table>
+    
+    <script src="js/select.js"></script>
+    <script>
+        function clickBtn1(){
+            const str1 = document.form_ym.category_select_ym.value;
+            const str2 = document.form_ymd.sub_category_select_ymd.value;
+            
+            if (str1 == "選択してください") {
+                alert("年月を選択してください");
+            } else { if (str2 == "選択してください") {
+                alert("年月日を選択してください");
+                } else {
+                    var yyyy = str1.substr(0,4);
+                    var mm = str1.substr(5,2);
+                    var dd = str2.substr(8,2);
+                    var yyyymmdd = str2.substr(0,4) + str2.substr(5,2) + str2.substr(8,2);
+                    var target_url = "data\\yyyy\\yyyymmdd\\yyyymmdd";
+                    
+                    var target_url = target_url.replace("yyyymmdd",yyyymmdd);
+                    var target_url = target_url.replace("yyyy",yyyy);
+                    var target_url = target_url.replace("yyyy",yyyy);
+                    var target_url = target_url.replace("yyyy",yyyy);
+                    var target_url = target_url.replace("mm",mm);
+                    var target_url = target_url.replace("mm",mm);
+                    var target_url = target_url.replace("dd",dd);
+
+                    iframe_1.location = target_url + "_1Day_kotowari_sum.html";
+                    iframe_2.location = target_url + "_1Day_kotowari_graph.html";
+                    iframe_3.location = target_url + "_1Day_kotowari_graph1.html";
+                    //alert(target_url);
+                }
+            }  
+        }
+        function clickDay(){
+            const str1 = document.form_ym.category_select_ym.value;
+            const str2 = document.form_ymd.sub_category_select_ymd.value;
+            if (str1 == "選択してください") {
+                var target_url = "data\\2023\\20231120\\20231120";
+            } else {
+                var yyyy = str1.substr(0,4);
+                var mm = str1.substr(5,2);
+                var dd = str2.substr(8,2);
+                var yyyymmdd = str2.substr(0,4) + str2.substr(5,2) + str2.substr(8,2);
+                var target_url = "data\\yyyy\\yyyymmdd\\yyyymmdd";
+                
+                var target_url = target_url.replace("yyyymmdd",yyyymmdd);
+                var target_url = target_url.replace("yyyy",yyyy);
+                var target_url = target_url.replace("yyyy",yyyy);
+                var target_url = target_url.replace("yyyy",yyyy);
+                var target_url = target_url.replace("mm",mm);
+                var target_url = target_url.replace("mm",mm);
+                var target_url = target_url.replace("dd",dd);
+            }
+            iframe_1.location = target_url +  "_1Day_kotowari_sum.html"
+            iframe_2.location = target_url +  "_1Day_kotowari_graph.html"
+            iframe_3.location = target_url +  "_1Day_kotowari_graph1.html"
+        }
+        function clickMonth(){
+            const str1 = document.form_ym.category_select_ym.value;
+            const str2 = document.form_ymd.sub_category_select_ymd.value;
+            if (str1 == "選択してください") {
+                var target_url = "data\\2023\\20231120\\20231120";
+            } else {
+                var yyyy = str1.substr(0,4);
+                var mm = str1.substr(5,2);
+                var dd = str2.substr(8,2);
+                var yyyymmdd = str2.substr(0,4) + str2.substr(5,2) + str2.substr(8,2);
+                var target_url = "data\\yyyy\\yyyymmdd\\yyyymmdd";
+                
+                var target_url = target_url.replace("yyyymmdd",yyyymmdd);
+                var target_url = target_url.replace("yyyy",yyyy);
+                var target_url = target_url.replace("yyyy",yyyy);
+                var target_url = target_url.replace("yyyy",yyyy);
+                var target_url = target_url.replace("mm",mm);
+                var target_url = target_url.replace("mm",mm);
+                var target_url = target_url.replace("dd",dd);
+            }
+            iframe_1.location = target_url +  "_1Month_kotowari_sum.html"
+            iframe_2.location = target_url +  "_1Month_kotowari_graph.html"
+            iframe_3.location = target_url +  "_1Month_kotowari_graph1.html"
+        }
+        function clickFY(){
+            const str1 = document.form_ym.category_select_ym.value;
+            const str2 = document.form_ymd.sub_category_select_ymd.value;
+            if (str1 == "選択してください") {
+                var target_url = "data\\2023\\20231120\\20231120";
+            } else {
+                var yyyy = str1.substr(0,4);
+                var mm = str1.substr(5,2);
+                var dd = str2.substr(8,2);
+                var yyyymmdd = str2.substr(0,4) + str2.substr(5,2) + str2.substr(8,2);
+                var target_url = "data\\yyyy\\yyyymmdd\\yyyymmdd";
+                
+                var target_url = target_url.replace("yyyymmdd",yyyymmdd);
+                var target_url = target_url.replace("yyyy",yyyy);
+                var target_url = target_url.replace("yyyy",yyyy);
+                var target_url = target_url.replace("yyyy",yyyy);
+                var target_url = target_url.replace("mm",mm);
+                var target_url = target_url.replace("mm",mm);
+                var target_url = target_url.replace("dd",dd);
+            }
+            iframe_1.location = target_url +  "_1FY_kotowari_sum.html"
+            iframe_2.location = target_url +  "_1FY_kotowari_graph.html"
+            iframe_3.location = target_url +  "_1FY_kotowari_graph1.html"
+        }
+        function clickjirei(){
+            const str1 = document.form_ym.category_select_ym.value;
+            const str2 = document.form_ymd.sub_category_select_ymd.value;
+            if (str1 == "選択してください") {
+                var target_url = "data\\2023\\20231120\\20231120";
+            } else {
+                var yyyy = str1.substr(0,4);
+                var mm = str1.substr(5,2);
+                var dd = str2.substr(8,2);
+                var yyyymmdd = str2.substr(0,4) + str2.substr(5,2) + str2.substr(8,2);
+                var target_url = "data\\yyyy\\yyyymmdd\\yyyymmdd";
+                
+                var target_url = target_url.replace("yyyymmdd",yyyymmdd);
+                var target_url = target_url.replace("yyyy",yyyy);
+                var target_url = target_url.replace("yyyy",yyyy);
+                var target_url = target_url.replace("yyyy",yyyy);
+                var target_url = target_url.replace("mm",mm);
+                var target_url = target_url.replace("mm",mm);
+                var target_url = target_url.replace("dd",dd);
+            }
+            link_url = target_url +  "_table.html"
+            location = link_url;
+        }
+    </script>
+</body>
