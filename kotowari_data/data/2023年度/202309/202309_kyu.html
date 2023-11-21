@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>救急車受入</title>
+    <link rel="stylesheet" type="text/css" href="../../../css/style_graph.css">
+    <script src="../../../js/Chart.min.js"></script>
+
+    <script>
+        var dataLabelPlugin01 = {
+                afterDatasetsDraw: function(chart) {
+                    var ctx = chart.ctx;
+                    chart.data.datasets.forEach(function(dataset, 系列) {
+                        var meta = chart.getDatasetMeta(系列);
+                        if (!meta.hidden) {
+                            meta.data.forEach(function(element, 要素) {
+                                var データ数値 = dataset.data[要素];
+                                if (データ数値 <= 0) var 比率 = "";
+                                else
+                                    var 比率 = データ数値.toString() + '%';
+                                if (要素 == 0) ctx.fillStyle = "white";
+                                else
+                                    ctx.fillStyle = "black";
+                                var fontSize = 11;                  // サイズ
+                                var fontStyle = 'normal';           // 書体 'bold', 'italic'
+                                var fontFamily = 'Meiryo UI';           // フォントの種類 'sans-serif', 'ＭＳ 明朝'
+                                ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                                ctx.textAlign = 'end';           // 文字列　start, end, left, right, center
+                                ctx.textBaseline = 'middle';        // 文字高　middle, top, bottom
+                                var padding = 5;                   // グラフ基準点と文字列の距離。適宜修正
+                                var position = element.tooltipPosition();
+                                ctx.fillText(比率, position.x-5, position.y);
+                            });
+                        }
+                    });
+                }
+            }
+
+        function chartjsProgram01() {
+            var ctx = document.getElementById('救急車_応需率').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: ['2023年09月','2022年09月','2021年09月'],
+                    datasets: [
+                        {
+                            data: [64.6,61.3,69.2],
+                            backgroundColor: ["#4E79A7","#E6E6E6","#E6E6E6"],
+                            borderColor: 'black',  // 棒の枠の色
+                            borderWidth: 1      // その太さ
+                        },
+                    ]
+                },
+                options: {
+                    responsive: false,
+                    legend: {    // 凡例の表示位置　（凡例位置: '下'|'右' 省略時は上）
+                        display: false,
+                    },
+                    scales: {
+                        xAxes: [
+                            {
+                                ticks: {
+                                    min: 0,
+                                    max: 69.2,
+                                    display: false
+                                },
+                                gridLines: {
+                                    drawBorder: false
+                                }
+                            }
+                        ],
+                    }
+                },
+                plugins: [dataLabelPlugin01]
+            });
+        }
+
+        var dataLabelPlugin02 = {
+                afterDatasetsDraw: function(chart) {
+                    var ctx = chart.ctx;
+                    chart.data.datasets.forEach(function(dataset, 系列) {
+                        var meta = chart.getDatasetMeta(系列);
+                        if (!meta.hidden) {
+                            meta.data.forEach(function(element, 要素) {
+                                var データ数値 = dataset.data[要素];
+                                if (データ数値 <= 0) var 比率 = "";
+                                else
+                                    var 比率 = データ数値.toString() + '件';
+                                if (要素 == 0) ctx.fillStyle = "white";
+                                else
+                                    ctx.fillStyle = "black";            // 色　'rgb(0, 0, 0)', 'rgba(192, 80, 77, 0.7)'
+                                var fontSize = 11;                  // サイズ
+                                var fontStyle = 'normal';           // 書体 'bold', 'italic'
+                                var fontFamily = 'Meiryo UI';           // フォントの種類 'sans-serif', 'ＭＳ 明朝'
+                                ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                                ctx.textAlign = 'end';           // 文字列　start, end, left, right, center
+                                ctx.textBaseline = 'middle';        // 文字高　middle, top, bottom
+                                var padding = 5;                   // グラフ基準点と文字列の距離。適宜修正
+                                var position = element.tooltipPosition();
+                                ctx.fillText(比率, position.x-10, position.y);
+                            });
+                        }
+                    });
+                }
+            }
+
+        function chartjsProgram02() {
+            var ctx = document.getElementById('救急車_要請件数').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: ['2023年09月','2022年09月','2021年09月'],
+                    datasets: [
+                        {
+                            data: [288,315,201],
+                            backgroundColor: ["#4E79A7","#E6E6E6","#E6E6E6"],
+                            borderColor: 'black',  // 棒の枠の色
+                            borderWidth: 1      // その太さ
+                        },
+                    ]
+                },
+                options: {
+                    responsive: false,
+                    legend: {    // 凡例の表示位置　（凡例位置: '下'|'右' 省略時は上）
+                        display: false,
+                    },
+                    scales: {
+                        xAxes: [
+                            {
+                                ticks: {
+                                    min: 0,
+                                    max: 315,
+                                    display: false
+                                },
+                                gridLines: {
+                                    drawBorder: false
+                                }
+                            }
+                        ],
+                    }
+                },
+                plugins: [dataLabelPlugin02]
+            });
+        }
+
+        var dataLabelPlugin03 = {
+                afterDatasetsDraw: function(chart) {
+                    var ctx = chart.ctx;
+                    chart.data.datasets.forEach(function(dataset, 系列) {
+                        var meta = chart.getDatasetMeta(系列);
+                        if (!meta.hidden) {
+                            meta.data.forEach(function(element, 要素) {
+                                var データ数値 = dataset.data[要素];
+                                if (データ数値 <= 0) var 比率 = "";
+                                else
+                                    var 比率 = データ数値.toString() + '件';
+                                if (要素 == 0) ctx.fillStyle = "white";
+                                else
+                                    ctx.fillStyle = "black";
+                                var fontSize = 11;                  // サイズ
+                                var fontStyle = 'normal';           // 書体 'bold', 'italic'
+                                var fontFamily = 'Meiryo UI';           // フォントの種類 'sans-serif', 'ＭＳ 明朝'
+                                ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                                ctx.textAlign = 'end';           // 文字列　start, end, left, right, center
+                                ctx.textBaseline = 'middle';        // 文字高　middle, top, bottom
+                                var padding = 5;                   // グラフ基準点と文字列の距離。適宜修正
+                                var position = element.tooltipPosition();
+                                                                //文字列の表示　 fillText(文字列, Ｘ位置, Ｙ位置)
+                                ctx.fillText(比率, position.x-10, position.y);
+                            });
+                        }
+                    });
+                }
+            }
+
+        function chartjsProgram03() {
+            var ctx = document.getElementById('救急車_受入件数').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: ['2023年09月','2022年09月','2021年09月'],
+                    datasets: [
+                        {
+                            data: [186,193,139],
+                            backgroundColor: ["#4E79A7","#E6E6E6","#E6E6E6"],
+                            borderColor: 'black',  // 棒の枠の色
+                            borderWidth: 1      // その太さ
+                        },
+                    ]
+                },
+                options: {
+                    responsive: false,
+                    legend: {    // 凡例の表示位置　（凡例位置: '下'|'右' 省略時は上）
+                        display: false,
+                    },
+                    scales: {
+                        xAxes: [
+                            {
+                                ticks: {
+                                    min: 0,
+                                    max: 193,
+                                    display: false
+                                },
+                                gridLines: {
+                                    drawBorder: false
+                                }
+                            }
+                        ],
+                    }
+                },
+                plugins: [dataLabelPlugin03]
+            });
+        }
+
+        var dataLabelPlugin04 = {
+                afterDatasetsDraw: function(chart) {
+                    var ctx = chart.ctx;
+                    chart.data.datasets.forEach(function(dataset, 系列) {
+                        var meta = chart.getDatasetMeta(系列);
+                        if (系列 == 0) {
+                            if (!meta.hidden) {
+                                meta.data.forEach(function(element, 要素) {
+                                                                // ステップ１　数値を文字列に変換
+                                    var データ数値 = dataset.data[要素];
+                                    if (データ数値 <= 0) var 比率 = "";
+                                    else
+                                        var 比率 = データ数値.toString() + '%';
+                                                                // ステップ２　文字列の書体
+                                    ctx.fillStyle = 'black';            // 色　'rgb(0, 0, 0)', 'rgba(192, 80, 77, 0.7)'
+                                    var fontSize = 14;                  // サイズ
+                                    var fontStyle = 'normal';           // 書体 'bold', 'italic'
+                                    var fontFamily = 'Meiryo UI';           // フォントの種類 'sans-serif', 'ＭＳ 明朝'
+                                    ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                                                                // ステップ３　文字列の位置の基準点
+                                    ctx.textAlign = 'center';           // 文字列　start, end, left, right, center
+                                    ctx.textBaseline = 'middle';        // 文字高　middle, top, bottom
+                                                                // ステップ４　文字列のグラフでの位置
+                                    var padding = 5;                   // グラフ基準点と文字列の距離。適宜修正
+                                    var position = element.tooltipPosition();
+                                                                    //文字列の表示　 fillText(文字列, Ｘ位置, Ｙ位置)
+                                    ctx.fillText(比率, position.x,position.y - (fontSize / 2) - padding);
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+
+        function chartjsProgram04() {
+            var ctx = document.getElementById('応需率_推移').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',//グラフのタイプ
+                fill: false,
+                data: {
+                    //labels: ['2023年度','2022年度','2021年度'],
+                    labels: ['4月','5月','6月','7月','8月','9月','10月','11月','12月','1月','2月','3月'],
+                    //{% tentou_koumoku %}
+                    datasets: [
+                        {
+                            label: '2023年度',
+                            borderColor: 'rgba(255,0,0,1)',  //グラフの線の色
+                            backgroundColor: 'rgba(255,0,0,0)', //グラフの背景色透過
+                            data: [75.0,61.6,63.9,59.5,57.7,64.6,null,null,null,null,null,null],
+                            tension: 0,
+                        },{
+                            label: '2022年度',
+                            borderColor: 'rgba(130,201,169,0.5)',  //グラフの線の色
+                            backgroundColor: 'rgba(130,201,169,0)', //グラフの背景色透過
+                            data: [59.7,68.1,68.3,57.6,48.1,61.3,61.2,60.7,51.4,38.4,59.8,59.0],
+                            tension: 0,
+                        },{
+                            label: '2022年度',
+                            borderColor: 'rgba(255,183,76,0.5)',  //グラフの線の色
+                            backgroundColor: 'rgba(255,183,76,0)', //グラフの背景色透過
+                            data: [68.3,63.8,69.7,78.8,67.8,69.2,75.3,79.9,75.4,57.5,57.1,55.0],
+                            tension: 0,
+                        }
+                    ]
+                },
+                options: {
+                    legend: {    // 凡例の表示位置　（凡例位置: '下'|'右' 省略時は上）
+                    display: true//グラフの説明を表示
+                        },
+                    tooltips:{//グラフへカーソルを合わせた際のツールチップ詳細表示の設定
+                        callbacks:{
+                                label: function(tooltipItems, data) {
+                                    if(tooltipItems.yLabel == "0"){
+                                        return "";
+                                    }
+                                    return data.datasets[tooltipItems.datasetIndex].label + "：" + tooltipItems.yLabel + "%";//Kgを最後につける
+                                }
+                            }
+                        },
+                    title: {     // タイトルの表示（タイトル: 'タイトル文'）
+                        display: true,
+                        fontSize: 18,
+                        position: "top",
+                        text: '断り事例_総件数_推移'
+                    },
+                    
+                    scales: {
+                        yAxes: [
+                            {
+                                //display: false,
+                                //stacked: true,
+                                ticks: {
+                                    // 下記のように固定値ではなく、
+                                    // データに応じて算出するのがいいと思います
+                                    min: 0,
+                                },
+                            }
+                        ],
+                        xAxes: [
+                            {
+                                //display: true,
+                                //stacked: true,
+                        },
+                        ],
+                    }
+                },
+                plugins: [dataLabelPlugin04]
+            });
+        }
+
+        var dataLabelPlugin05 = {
+            afterDatasetsDraw: function(chart) {
+                var 合計 = 102;
+                var 凡例位置 = '内';
+                var 数量表示 = true;
+                var ctx = chart.ctx;
+                chart.data.datasets.forEach(function(dataset, i) {
+                    var meta = chart.getDatasetMeta(i);
+                    if (!meta.hidden) {
+                        meta.data.forEach(function(element, 要素) {
+                            var 要素値 = dataset.data[要素];
+                            ctx.fillStyle = 'black';            // 色　'rgb(0, 0, 0)', 'rgba(192, 80, 77, 0.7)'
+                            var fontSize = 14;                  // サイズ  
+                            var fontStyle = 'normal';           // 書体 'bold', 'italic'
+                            var fontFamily = 'Meiryo UI';           // フォントの種類 'sans-serif', 'ＭＳ 明朝'
+                            ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                            ctx.textAlign = 'center';           // 文字列　start, end, left, right, center
+                            ctx.textBaseline = 'middle';        // 文字高　middle, top, bottom
+                            var padding = 5;                   // 点と文字列の距離
+                            var position = element.tooltipPosition();
+                            var 要素名 = chart.data.labels[要素];
+                            if (要素値 > 0) {
+                                ctx.fillText(要素名, position.x, position.y-15);
+                                var 比率 = (要素値/合計*100).toFixed(1) + '%';
+                                ctx.fillText(比率, position.x, position.y);
+                            }
+                            
+                        });
+                    }
+                });
+            }
+        }
+        
+        function chartjsProgram05() {
+            var ctx = document.getElementById('救急車_断り区分').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut', 
+                data: {
+                    labels: ['救急・他患対応中','対応不可','その他','近医へご案内','満床のため','当該科なし'],  // 要素名（賛成、反対など）
+                    //labels: ['救急・他患対応中','当該科なし介','対応不可','近医へご案内','満床のため','その他'],  // 要素名（賛成、反対など）
+                    datasets: [
+                        {
+                            data: [40,19,19,10,7,7],
+                            backgroundColor: ['#C6E7D8','#FFDFAE','#76B7B2','#C6E7D8','#FFDFAE','#76B7B2'],
+                            //backgroundColor: ['#C6E7D8','#FFDFAE','#76B7B2','#C6E7D8','#FFDFAE','#76B7B2'], // 円弧の塗りつぶし色
+                            borderColor: 'black',                                // 境界線の色
+                            borderWidth: 0.5                                       // 境界線の幅
+                        }
+                    ]
+                },
+                options: {
+                    responsive: false,
+                    cutoutPercentage: 50,    // 中央空白サイズ% 0 円グラフ　50 ドーナッツ
+                    legend: {    // 凡例の表示位置　（凡例位置: '下'|'右'|'外' 省略時は上）
+                        display: false
+                    },
+                    title: {     // タイトルの表示（タイトル: 'タイトル文'）
+                        display: true,
+                        fontSize: 18,
+                        position: "top",
+                        text: '救急車_断り区分'
+                    },
+                },
+                plugins: [dataLabelPlugin05]
+            });
+        }
+
+        var dataLabelPlugin06 = {
+            afterDatasetsDraw: function(chart) {
+                var 合計 = 102;
+                var 凡例位置 = '内';
+                var 数量表示 = true;
+                var ctx = chart.ctx;
+                chart.data.datasets.forEach(function(dataset, i) {
+                    var meta = chart.getDatasetMeta(i);
+                    if (!meta.hidden) {
+                        meta.data.forEach(function(element, 要素) {
+                            var 要素値 = dataset.data[要素];
+                            ctx.fillStyle = 'black';            // 色　'rgb(0, 0, 0)', 'rgba(192, 80, 77, 0.7)'
+                            var fontSize = 14;                  // サイズ  
+                            var fontStyle = 'normal';           // 書体 'bold', 'italic'
+                            var fontFamily = 'Meiryo UI';           // フォントの種類 'sans-serif', 'ＭＳ 明朝'
+                            ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                            ctx.textAlign = 'center';           // 文字列　start, end, left, right, center
+                            ctx.textBaseline = 'middle';        // 文字高　middle, top, bottom
+                            var padding = 5;                   // 点と文字列の距離
+                            var position = element.tooltipPosition();
+                            var 要素名 = chart.data.labels[要素];
+                            if (要素値 > 0) {
+                                ctx.fillText(要素名, position.x, position.y-15);
+                                var 比率 = (要素値/合計*100).toFixed(1) + '%';
+                                ctx.fillText(比率, position.x, position.y);
+                            }
+                            
+                        });
+                    }
+                });
+            }
+        }
+        
+        function chartjsProgram06() {
+            var ctx = document.getElementById('救急車_時間帯').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut', 
+                data: {
+                    labels: ['準夜','日勤','深夜'],  // 要素名（賛成、反対など）
+                    //labels: ['日勤','準夜','深夜'],  // 要素名（賛成、反対など）
+                    datasets: [
+                        {
+                            data: [42,33,27],
+                            backgroundColor: ['#C6E7D8','#FFDFAE','#76B7B2'], // 円弧の塗りつぶし色
+                            //backgroundColor: ['#C6E7D8','#FFDFAE','#76B7B2'], // 円弧の塗りつぶし色
+                            borderColor: 'black',                                // 境界線の色
+                            borderWidth: 0.5                                       // 境界線の幅
+                        }
+                    ]
+                },
+                options: {
+                    responsive: false,
+                    cutoutPercentage: 50,    // 中央空白サイズ% 0 円グラフ　50 ドーナッツ
+                    legend: {    // 凡例の表示位置　（凡例位置: '下'|'右'|'外' 省略時は上）
+                        display: false
+                    },
+                    title: {     // タイトルの表示（タイトル: 'タイトル文'）
+                        display: true,
+                        fontSize: 18,
+                        position: "top",
+                        text: '救急車_時間帯'
+                    },
+                },
+                plugins: [dataLabelPlugin06]
+            });
+        }
+
+        var dataLabelPlugin07 = {
+            afterDatasetsDraw: function(chart) {
+                var 合計 = 102;
+                var 凡例位置 = '内';
+                var 数量表示 = true;
+                var ctx = chart.ctx;
+                chart.data.datasets.forEach(function(dataset, i) {
+                    var meta = chart.getDatasetMeta(i);
+                    if (!meta.hidden) {
+                        meta.data.forEach(function(element, 要素) {
+                            var 要素値 = dataset.data[要素];
+                            ctx.fillStyle = 'black';            // 色　'rgb(0, 0, 0)', 'rgba(192, 80, 77, 0.7)'
+                            var fontSize = 14;                  // サイズ  
+                            var fontStyle = 'normal';           // 書体 'bold', 'italic'
+                            var fontFamily = 'Meiryo UI';           // フォントの種類 'sans-serif', 'ＭＳ 明朝'
+                            ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                            ctx.textAlign = 'center';           // 文字列　start, end, left, right, center
+                            ctx.textBaseline = 'middle';        // 文字高　middle, top, bottom
+                            var padding = 5;                   // 点と文字列の距離
+                            var position = element.tooltipPosition();
+                            var 要素名 = chart.data.labels[要素];
+                            if (要素値 > 0) {
+                                ctx.fillText(要素名, position.x, position.y-15);
+                                var 比率 = (要素値/合計*100).toFixed(1) + '%';
+                                ctx.fillText(比率, position.x, position.y);
+                            }
+                            
+                        });
+                    }
+                });
+            }
+        }
+        
+        function chartjsProgram07() {
+            var ctx = document.getElementById('救急車_年齢').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut', 
+                data: {
+                    labels: ['高齢者','大人','小児','不明'],  // 要素名（賛成、反対など）
+                    //labels: ['小児','大人','高齢者','不明'],  // 要素名（賛成、反対など）
+                    datasets: [
+                        {
+                            data: [50,40,6,6],
+                            backgroundColor: ['#C6E7D8','#FFDFAE','#76B7B2','#C6E7D8'], // 円弧の塗りつぶし色
+                            //backgroundColor: ['#C6E7D8','#FFDFAE','#76B7B2','#F28E2B'], // 円弧の塗りつぶし色
+                            borderColor: 'black',                                // 境界線の色
+                            borderWidth: 0.5                                       // 境界線の幅
+                        }
+                    ]
+                },
+                options: {
+                    responsive: false,
+                    cutoutPercentage: 50,    // 中央空白サイズ% 0 円グラフ　50 ドーナッツ
+                    legend: {    // 凡例の表示位置　（凡例位置: '下'|'右'|'外' 省略時は上）
+                        display: false
+                    },
+                    title: {     // タイトルの表示（タイトル: 'タイトル文'）
+                        display: true,
+                        fontSize: 18,
+                        position: "top",
+                        text: '救急車_年齢'
+                    },
+                },
+                plugins: [dataLabelPlugin07]
+            });
+        }
+    </script>
+</head>
+<header class="midashi">
+    <h2>2023年09月_救急車受入状況</h2>
+</header>
+<body onLoad="chartjsProgram01();chartjsProgram02();chartjsProgram03();chartjsProgram04();chartjsProgram05();chartjsProgram06();chartjsProgram07()">
+    <table align="center">
+        <td>
+            <table width="362" class="table1">
+                <tr>
+                    <td colspan="2" align="center" class="m1">救急車<br>応需率</td>
+                </tr>
+                <tr>
+                    <td align="center" class="suchi"><a href="#" title="" class="up_arrow">64.6%</a></td>
+                    <!-- {% tentou_data1 %} -->
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table width="362" class="table1">
+                <tr>
+                    <td colspan="2" align="center" class="m1">救急車<br>要請件数</td>
+                </tr>
+                <tr>
+                    <td align="center" class="suchi"><a href="#" title="" class="dw_arrow">288件</a></td>
+                    <!-- {% tentou_data1 %} -->
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table width="362" class="table1">
+                <tr>
+                    <td colspan="2" align="center" class="m1">救急車<br>受入件数</td>
+                </tr>
+                <tr>
+                    <td align="center" class="suchi"><a href="#" title="" class="dw_arrow">186件</a></td>
+                    <!-- {% tentou_data1 %} -->
+                </tr>
+            </table>
+        </td>
+    </table>
+    <table align="center">
+        <td>
+            <table align="center" cellpadding="10" class="table2">
+                <tr>
+                    <td><canvas id='救急車_応需率' width='340' height='100'></canvas></td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table align="center" cellpadding="10" class="table2">
+                <tr>
+                    <td><canvas id='救急車_要請件数' width='340' height='100'></canvas></td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table align="center" cellpadding="10" class="table2">
+                <tr>
+                    <td><canvas id='救急車_受入件数' width='340' height='100'></canvas></td>
+                </tr>
+            </table>
+        </td>
+    </table>
+    <table align="center">
+        <td>
+            <table width="362" class="table3">
+                <tr>
+                    <td align="center" class="m4">前年：61.3%</td>
+                    <!-- {% tentou_data2 %} -->
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table width="362" class="table3">
+                <tr>
+                    <td align="center" class="m4">前年：315件</td>
+                    <!-- {% jyokusou_data2 %} -->
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table width="362" class="table3">
+                <tr>
+                    <td align="center" class="m4">前年：193件</td>
+                    <!-- {% yokusei_data2 %} -->
+                </tr>
+            </table>
+        </td>
+    </table>
+    <table align="center">
+        <td>
+            <table align="center" cellpadding="10" class="table2">
+                <tr>
+                    <td><canvas id='救急車_断り区分' width='340' height='250'></canvas></td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table align="center" cellpadding="10" class="table2">
+                <tr>
+                    <td><canvas id='救急車_時間帯' width='340' height='250'></canvas></td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table align="center" cellpadding="10" class="table2">
+                <tr>
+                    <td><canvas id='救急車_年齢' width='340' height='250'></canvas></td>
+                </tr>
+            </table>
+        </td>
+    </table>
+    <table align="center">
+        <td>
+            <table align="center" cellpadding="10" class="table2">
+                <tr>
+                    <td><canvas id='応需率_推移' width='1073' height='250'></canvas></td>
+                </tr>
+            </table>
+        </td>
+    </table>
+    <script src="../../../js/location.js"></script>
+</body>
