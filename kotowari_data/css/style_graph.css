@@ -1,0 +1,208 @@
+@charset "UTF-8";
+
+.box select {
+    width: 150px;
+    border: 1px solid;
+    font-size: 18px;
+}
+
+.box {
+	max-width: 1210px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body {
+    font-family: 'Meiryo UI';
+    }
+
+/* 見出し */ 
+.midashi {
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #0071BC;
+}
+
+.midashi1 {
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    max-width: 1065px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #0071BC;
+}
+
+.m1 {
+    font-size: 18px;
+    color: white;
+    background-color: #0067A1;
+}
+
+.m2 {
+    font-size: 18px;
+    color: white;
+    background-color: #00215D;
+}
+
+.m3 {
+    font-size: 18px;
+    color: white;
+    background-color: #589EEF;
+}
+
+.m4 {
+    font-size: 14px;
+}
+
+.table1 {
+    border-collapse: collapse;
+    border: 1px solid gray;
+}
+
+.table2 {
+    border-collapse: collapse;
+    border: 1px solid gray;
+}
+
+.table3 {
+    border-collapse: collapse;
+    border: 1px solid gray;
+    margin-bottom: 5px;
+}
+
+.table3 td{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.suchi {
+    border: 1px solid gray;
+    padding-top: 5px;
+    padding-bottom: 5px;
+	
+}
+
+.data {
+    font-size: 12px;
+    color: white;    
+}
+
+/* 上矢印 */
+.up_arrow {
+	position: relative;
+	display: inline-block;
+	padding-left: 30px;
+	text-decoration: none;
+	font-size: 22px;
+    font-weight: bold;
+	color: #76B7B2;
+}
+
+.up_arrow::before { /* 背景の表示設定 */
+	content: "";
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 3px;
+	width: 23px; /* 横幅 */
+	height: 23px; /* 高さ */
+	border-radius: 50%; /* 角の丸み */
+	background: #76B7B2;
+}
+
+.up_arrow::after { /* くの字の表示設定 */
+	content: "";
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-top: 3px solid #fff;
+	border-right: 3px solid #fff;
+	transform: rotate(-45deg);
+}
+
+/* 下矢印 */
+.dw_arrow {
+	position: relative;
+	display: inline-block;
+	padding-left: 30px;
+	text-decoration: none;
+	font-size: 22px;
+    font-weight: bold;
+	color: tomato;
+}
+
+.dw_arrow::before { /* 背景の表示設定 */
+	content: "";
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 3px;
+	width: 23px; /* 横幅 */
+	height: 23px; /* 高さ */
+	border-radius: 50%; /* 角の丸み */
+	background: tomato;
+}
+
+.dw_arrow::after { /* くの字の表示設定 */
+	content: "";
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-top: 3px solid #fff;
+	border-right: 3px solid #fff;
+	transform: rotate(135deg);
+}
+
+/* 横矢印 */
+.bs_arrow {
+	position: relative;
+	display: inline-block;
+	padding-left: 30px;
+	text-decoration: none;
+	font-size: 22px;
+    font-weight: bold;
+	color: #F28E2B;
+}
+
+.bs_arrow::before { /* 背景の表示設定 */
+	content: "";
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 3px;
+	width: 23px; /* 横幅 */
+	height: 23px; /* 高さ */
+	border-radius: 50%; /* 角の丸み */
+	background: #F28E2B;
+}
+
+.bs_arrow::after { /* くの字の表示設定 */
+	content: "";
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-top: 3px solid #fff;
+	border-right: 3px solid #fff;
+	transform: rotate(45deg);
+}
+
